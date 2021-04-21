@@ -1,15 +1,64 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Tableau</title>
+    <title>Fintrax Tableau</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link rel="apple-touch-icon" sizes="180x180" href=<%= image_url("apple-icon-180x180.png") %>>
+    <link rel="icon" type="image/png" sizes="32x32" href=<%= image_url("favicon-32x32.png") %>>
+    <link rel="icon" type="image/png" sizes="16x16" href=<%= image_url("favicon-16x16.png") %>>
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content=<%= image_url("ms-icon-144x144.png") %>>
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.0-alpha/Chart.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+      src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+      integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container-fluid fixed-top" id="header-wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <nav class="navbar navbar-light bg-light">
+              <%= link_to image_tag("logo.png", id:"logo", class:"navbar-brand"), "/" %>
+              <div>
+                <%= current_user.email %> -  <%= current_user.firm_name %>&nbsp;&nbsp;&nbsp;
+                <a href="/oauth/logout"><button class="btn btn-primary">Logout</button></a>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="info-message" class="alert alert-info hidden">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Duplicate name!</strong> A business plan template with this name already exists. Please choose another name.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" id="content">
+      <div class="row">
+        <div class="col-sm-12">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

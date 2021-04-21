@@ -1,0 +1,196 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ /*
+Fin Azul
+#2e539f
+rgb(46,83,159)
+Usage:
+Brand Colour
+Accent Colour
+Recognisability
+Fintrax Colour Scheme
+
+Negro Azul
+#151b2e
+rgb(21,27,46)
+Usage:
+Secondary
+Background
+Typography
+
+Grey Three
+#485664
+rgb(72,86,100)
+Usage:
+Support Colour
+Typography
+Background
+
+Grey Two
+#8d97a3
+rgb(141,151,163)
+Usage:
+Support Colour
+Typography
+Background
+
+Grey One
+#aeb5bf
+rgb(174,181,191)
+Usage:
+Support Colour
+Typography
+Background
+
+White
+#ffffff
+rbg(255,255,255)
+Usage:
+Prime
+Background
+Typography
+*/
+
+
+canvas {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+html,body {
+  height: 100%;
+}
+
+body {
+  background: #EEE;
+  color: #485664;
+  padding-top: 90px;
+}
+
+a {
+  color: #2e539f;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #151b2e;
+}
+
+.h1 {
+  color: #485664;
+  padding-bottom: 30px;
+  margin: 0;
+  font-size: 2em;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #2e539f;
+  border-color: #2e539f;
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+  color: #fff;
+  background-color: #2e539f;
+  border-color: #2e539f;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #225ac9;
+  border-color: #225ac9;
+}
+
+.btn-secondary {
+  color: #fff;
+  background-color: #485664;
+  border-color: #485664;
+}
+
+.btn-secondary:hover {
+  color: #fff;
+  background-color: #aeb5bf;
+  border-color: #aeb5bf;
+}
+
+#header-content {
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.progress-bar {
+  background-color: #2e539f;
+}
+
+#url {
+  width: 1000px;
+  height: 500px;
+}
+
+#logo {
+  height: 40px;
+}
+
+.hidden {
+  display: none;
+}
+
+.form-control {
+  border: 0px;
+  box-shadow: 0 0 2px 2px rgba(0,0,0,.1);
+}
+
+.navbar {
+  padding: 1rem 0;
+}
+
+#header-wrapper {
+  box-shadow: 0 0 2px 1px #CCC;
+  background-color: rgba(255,255,255,0.64) !important;
+}
+
+.alert-info {
+    color: #FFF;
+    background-color: #2e539f;
+    border-color: #2e539f;
+}
+
+.alert {
+  border-radius: 0;
+}
+
+.close,
+.close:hover {
+  color: #FFF;
+}
+
+.btn-max {
+  width: 100%;
+}
+
+h1 {
+  color: #2e539f;
+  margin-bottom: 20px;
+}
+
+#content {
+  background: #FFF;
+  padding: 30px;
+  box-shadow: 0px 0px 2px #777;
+}
