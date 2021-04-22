@@ -1,0 +1,1 @@
+migrate: rake db:migrate
