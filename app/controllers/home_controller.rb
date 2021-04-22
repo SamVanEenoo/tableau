@@ -13,6 +13,7 @@ class HomeController < ApplicationController
         companies = api.get_companies(page: company_page)
         companies[:data].each do |company|
           this_company = Company.first_or_initialize(id: company["id"], name: company["name"], firm_id: current_user.firm_id)
+          this_company.save!
           puts company["name"]
           periods = api.get_periods(company_id: company["id"])
           found = false
@@ -30,6 +31,7 @@ class HomeController < ApplicationController
                   results.each do |result|
                     financial = Financial.first_or_initialize(key: result[0])
                     financial.value = result[1]
+                    financial.company_id = company["id"];
                     financial.save!
                   end
                   break
