@@ -12,7 +12,9 @@ class HomeController < ApplicationController
         puts "company_page: #{company_page}"
         companies = api.get_companies(page: company_page)
         companies[:data].each do |company|
-          this_company = Company.first_or_initialize(id: company["id"], name: company["name"], firm_id: current_user.firm_id)
+          puts "COMPANY: #{company["id"]}"
+          this_company = Company.find_or_initialize_by(id: company["id"], name: company["name"], firm_id: current_user.firm_id)
+          this_company.save!
           puts company["name"]
           periods = api.get_periods(company_id: company["id"])
           found = false
@@ -28,8 +30,10 @@ class HomeController < ApplicationController
                 if reconciliation["handle"] == "fintrax_tableau"
                   results = api.get_reconciliation_results(company_id: company["id"], period_id: period["id"], reconciliation_id: reconciliation["id"])
                   results.each do |result|
-                    financial = Financial.first_or_initialize(key: result[0])
+                    financial = Financial.find_or_initialize_by(company_id: company["id"])
+                    financial.key = result[0]
                     financial.value = result[1]
+                    financial.company_id = company["id"];
                     financial.save!
                   end
                   break
