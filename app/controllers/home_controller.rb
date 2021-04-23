@@ -28,14 +28,18 @@ class HomeController < ApplicationController
               reconciliations[:data].each do |reconciliation|
                 puts reconciliation["handle"]
                 if reconciliation["handle"] == "fintrax_tableau"
+                  financial = Financial.find_or_initialize_by(company_id: company["id"])
                   results = api.get_reconciliation_results(company_id: company["id"], period_id: period["id"], reconciliation_id: reconciliation["id"])
                   results.each do |result|
-                    financial = Financial.find_or_initialize_by(company_id: company["id"])
-                    financial.key = result[0]
-                    financial.value = result[1]
-                    financial.company_id = company["id"];
-                    financial.save!
+                    case result[0]
+                    when "ebitda"
+                      financial.ebitda = result[1]
+                    when "ebit"
+                      financial.ebit = result[1]
+                    end
                   end
+                  financial.company_id = company["id"];
+                  financial.save!
                   break
                 end
               end
@@ -49,3 +53,5 @@ class HomeController < ApplicationController
   end
 
 end
+
+
