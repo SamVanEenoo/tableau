@@ -4,6 +4,7 @@ class HomeController < ApplicationController
     current_user = User.first_or_initialize(current_user)
     api = SilverfinApi.new(user: current_user,
                      oauth_access_token: current_user.oauth_access_token)
+    firm = api.get_firm
     recons = []
 
     company_page = 0
@@ -12,8 +13,10 @@ class HomeController < ApplicationController
         puts "company_page: #{company_page}"
         companies = api.get_companies(page: company_page)
         companies[:data].each do |company|
-          puts "COMPANY: #{company["id"]}"
-          this_company = Company.find_or_initialize_by(id: company["id"], name: company["name"], firm_id: current_user.firm_id)
+          puts "COMPANY: #{company["id"]} => #{current_user.firm_id}"
+          this_company = Company.find_or_initialize_by(id: company["id"])
+          this_company.name = company["name"]
+          this_company.firm_id = firm["id"]
           this_company.save!
           puts company["name"]
           periods = api.get_periods(company_id: company["id"])
